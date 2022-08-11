@@ -5,19 +5,27 @@ const palindromes = function (phrase) {
 			if (phrase[i].match(/[a-z]/i))
 				stringy += phrase[i];
 		}
-		return stringy;
+		return stringy.toLowerCase();
 	}
 
-	console.log(filtered());
+	function checkPalindrome(string, len){
+		const middleIndex = (() => {
+			if (len % 2 == 0)
+				return len / 2;
+			return Math.floor(len/2) + 1;
+		})();
+
+		for (let i = 0; i < middleIndex - 1; i++){
+			if (string[i] != string[len-1-i])
+				return false;
+		}
+		return true;
+	}
+
+	return checkPalindrome(filtered(), filtered().length);
 }
 
-palindromes("Test, This, Shit");
-/*
-const string = "My Little Pony";
-for (let i = 0; i < string.length; i++){
-	if (string[i].match(/[a-z]/i))
-		console.log(string[i]);
-}
-*/
+console.log(palindromes("Racecar!"));
+
 // Do not edit below this line
 module.exports = palindromes;
